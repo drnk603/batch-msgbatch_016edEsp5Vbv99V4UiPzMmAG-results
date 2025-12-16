@@ -200,7 +200,7 @@
       let isMatch = false;
 
       if (linkPath === '/' || linkPath === '/index.html') {
-        if (currentPath === '/' || currentPath === '/index.html' || currentPath.match(//index.html?$/)) {
+        if (currentPath === '/' || currentPath === '/index.html' || currentPath.match(/\/index\.html?$/)) {
           isMatch = true;
         }
       } else if (linkPath && currentPath.indexOf(linkPath) === 0) {
@@ -276,7 +276,7 @@
           if (!value || value.trim().length < 2) {
             return 'Vorname muss mindestens 2 Zeichen enthalten.';
           }
-          const nameRegex = /^[a-zA-ZÀ-ÿs-']{2,50}$/;
+          const nameRegex = /^[a-zA-ZÀ-ÿ\s-']{2,50}$/;
           if (!nameRegex.test(value)) {
             return 'Vorname enthält ungültige Zeichen.';
           }
@@ -290,7 +290,7 @@
           if (!value || value.trim().length < 2) {
             return 'Nachname muss mindestens 2 Zeichen enthalten.';
           }
-          const nameRegex = /^[a-zA-ZÀ-ÿs-']{2,50}$/;
+          const nameRegex = /^[a-zA-ZÀ-ÿ\s-']{2,50}$/;
           if (!nameRegex.test(value)) {
             return 'Nachname enthält ungültige Zeichen.';
           }
@@ -304,7 +304,7 @@
           if (!value || value.trim().length === 0) {
             return 'E-Mail-Adresse ist erforderlich.';
           }
-          const emailRegex = /^[^s@]+@[^s@]+.[^s@]+$/;
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailRegex.test(value)) {
             return 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
           }
@@ -318,7 +318,7 @@
           if (!value || value.trim().length === 0) {
             return 'Telefonnummer ist erforderlich.';
           }
-          const phoneRegex = /^[ds+-()]{10,20}$/;
+          const phoneRegex = /^[\d\s+\-()]{10,20}$/;
           if (!phoneRegex.test(value)) {
             return 'Bitte geben Sie eine gültige Telefonnummer ein.';
           }
@@ -643,280 +643,3 @@
     window.__app.init();
   }
 })();
-# enhanced-animations.css
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-.c-button {
-  position: relative;
-  overflow: hidden;
-}
-
-.c-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease-in-out;
-}
-
-.c-button:hover::before {
-  left: 100%;
-}
-
-.c-card,
-.c-benefit-card,
-.c-service-card,
-.c-testimonial-card,
-.c-job-card,
-.c-brochure-card {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.c-card:hover,
-.c-benefit-card:hover,
-.c-service-card:hover,
-.c-testimonial-card:hover,
-.c-job-card:hover,
-.c-brochure-card:hover {
-  transform: translateY(-8px) scale(1.02);
-}
-
-.c-nav__link {
-  position: relative;
-  overflow: hidden;
-}
-
-.c-nav__link::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
-  transform: translateX(-50%);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.c-nav__link:hover::before,
-.c-nav__link.is-active::before {
-  width: 100%;
-}
-
-.l-hero__content > * {
-  animation: fadeInUp 0.8s ease-out backwards;
-}
-
-.l-hero__content > *:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.l-hero__content > *:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-.l-hero__content > *:nth-child(3) {
-  animation-delay: 0.5s;
-}
-
-.c-logo {
-  transition: transform 0.3s ease-in-out;
-}
-
-.c-logo:hover {
-  transform: scale(1.05);
-}
-
-img {
-  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-}
-
-.c-card__image {
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.c-card:hover .c-card__image {
-  transform: scale(1.08);
-}
-
-.c-form__input,
-.c-form__textarea,
-.c-form__select {
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
-
-.c-form__input:focus,
-.c-form__textarea:focus,
-.c-form__select:focus {
-  background-color: rgba(212, 160, 83, 0.05);
-}
-
-.c-form__error {
-  animation: fadeInUp 0.3s ease-out;
-}
-
-.c-countdown__value {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.c-benefit-card__icon,
-.c-service-card__icon,
-.c-brochure-card__icon {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.c-benefit-card:hover .c-benefit-card__icon,
-.c-service-card:hover .c-service-card__icon,
-.c-brochure-card:hover .c-brochure-card__icon {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 12px 30px rgba(212, 160, 83, 0.4);
-}
-
-.breadcrumb-item a {
-  position: relative;
-}
-
-.breadcrumb-item a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--color-accent-light);
-  transition: width 0.3s ease-in-out;
-}
-
-.breadcrumb-item a:hover::after {
-  width: 100%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .c-countdown__value {
-    animation: none;
-  }
-}
-
-.l-header {
-  animation: fadeIn 0.5s ease-out;
-}
-
-.l-footer {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-.c-nav__toggle-icon::before,
-.c-nav__toggle-icon::after,
-.c-nav__toggle-icon span {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.l-header__nav {
-  transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.c-nav__list {
-  animation: fadeIn 0.4s ease-out;
-}
-
-.c-button:active {
-  transform: scale(0.98);
-}
-
-.c-checkbox__input {
-  transition: transform 0.2s ease-in-out;
-}
-
-.c-checkbox__input:checked {
-  transform: scale(1.1);
-}
-
-.c-job-card__badge {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.c-job-card:hover .c-job-card__badge {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(212, 160, 83, 0.3);
-}
